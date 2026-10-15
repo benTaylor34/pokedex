@@ -1,6 +1,8 @@
 # Camera Pokédex
 
-Point your camera at a Pokémon (a plush, a card, a screen, a figure) and press **SCAN**. The app:
+Point your camera at a Pokémon (a plush, a card, a screen, a figure) and press **SCAN**. 
+
+The app:
 
 1. **Reverse image searches** the photo with Google Lens (via [SerpApi](https://serpapi.com/google-lens-api)).
 2. **Tallies every Pokémon name** that appears in the matching results. Higher-ranked results count for more, and the most common/highest-scoring name wins. The runners-up are shown as "Not right?" buttons.
