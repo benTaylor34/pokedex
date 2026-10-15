@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pokédex</title>
+  <meta name="theme-color" content="#c8102e">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="pokedex">
+    <!-- LEFT HALF: camera -->
+    <section class="half left">
+      <header class="lights">
+        <div class="lens" id="lens"><div class="lens-glare"></div></div>
+        <span class="led red" id="ledRed"></span>
+        <span class="led yellow" id="ledYellow"></span>
+        <span class="led green" id="ledGreen"></span>
+      </header>
+
+      <div class="bezel">
+        <div class="bezel-dots"><span></span><span></span></div>
+        <div class="screen camera-screen">
+          <video id="video" autoplay playsinline muted></video>
+          <img id="still" alt="" hidden>
+          <div class="reticle"></div>
+          <div class="scanline" id="scanline" hidden></div>
+          <p class="camera-msg" id="cameraMsg">Starting camera…</p>
+        </div>
+        <div class="bezel-bottom">
+          <span class="bezel-led"></span>
+          <span class="grille"><i></i><i></i><i></i><i></i></span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="scan-btn" id="scanBtn" aria-label="Scan Pokémon" disabled>SCAN</button>
+        <div class="pills">
+          <label class="pill red-pill" title="Identify from a photo">
+            <input type="file" id="fileInput" accept="image/*" hidden>PHOTO
+          </label>
+          <button class="pill blue-pill" id="flipBtn" title="Switch camera">FLIP</button>
+        </div>
+        <div class="dpad" aria-label="Browse Pokédex entries">
+          <button class="up" id="dUp" aria-label="Scroll up"></button>
+          <button class="left" id="dLeft" aria-label="Previous entry"></button>
+          <span class="mid"></span>
+          <button class="right" id="dRight" aria-label="Next entry"></button>
+          <button class="down" id="dDown" aria-label="Scroll down"></button>
+        </div>
+      </div>
+      <div class="status-screen" id="status">READY</div>
+    </section>
+
+    <div class="hinge" aria-hidden="true"><span></span><span></span><span></span></div>
+
+    <!-- RIGHT HALF: data -->
+    <section class="half right">
+      <div class="info-screen" id="info">
+        <div class="placeholder" id="placeholder">
+          <p>Point the camera at a Pokémon and press <b>SCAN</b>.</p>
+          <p class="small">Or search by name below.</p>
+        </div>
+
+        <article class="entry" id="entry" hidden>
+          <div class="entry-head">
+            <span class="dexno" id="dexNo"></span>
+            <h1 id="pkName"></h1>
+          </div>
+          <div class="entry-body">
+            <div class="art"><img id="pkArt" alt=""></div>
+            <dl class="stats">
+              <dt>TYPE</dt><dd id="pkTypes"></dd>
+              <dt>SPECIES</dt><dd id="pkCategory"></dd>
+              <dt>HT</dt><dd id="pkHeight"></dd>
+              <dt>WT</dt><dd id="pkWeight"></dd>
+              <dt>ABILITY</dt><dd id="pkAbilities"></dd>
+            </dl>
+          </div>
+        </article>
+      </div>
+
+      <div class="dex-text-screen">
+        <div class="dex-text-meta" id="entryMeta"></div>
+        <p class="dex-text" id="dexText"></p>
+      </div>
+
+      <div class="keypad">
+        <button data-action="speak" title="Read entry aloud">▶ SPEAK</button>
+        <button data-action="stop" title="Stop speaking">■ STOP</button>
+        <button data-action="prev" title="Previous entry">◀ PREV</button>
+        <button data-action="next" title="Next entry">NEXT ▶</button>
+        <button data-action="mode" id="modeBtn" title="Switch anime/game entries">ANIME</button>
+        <button data-action="mute" id="muteBtn" title="Toggle voice">VOICE ON</button>
+      </div>
+
+      <div class="candidates" id="candidates" hidden></div>
+
+      <form class="search" id="searchForm" autocomplete="off">
+        <input id="searchInput" list="names" placeholder="SEARCH BY NAME" aria-label="Pokémon name">
+        <datalist id="names"></datalist>
+        <button type="submit">GO</button>
+      </form>
+
+      <div class="footer-row">
+        <a id="sourceLink" href="https://bulbapedia.bulbagarden.net" target="_blank" rel="noopener">Data: Bulbapedia</a>
+        <span class="mini-leds"><i></i><i></i></span>
+      </div>
+    </section>
+  </main>
+
+  <canvas id="canvas" hidden></canvas>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
